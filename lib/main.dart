@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const DayBuddy());
 }
 
@@ -12,25 +18,8 @@ class DayBuddy extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DayBuddy',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: const HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "DayBuddy 🚀",
-          style: TextStyle(fontSize: 28),
-        ),
+      home: const Scaffold(
+        body: Center(child: Text("DayBuddy 🚀")),
       ),
     );
   }
